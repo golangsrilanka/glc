@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/GolangSriLanka/glc/cmd/prompt"
 	"github.com/GolangSriLanka/glc/internal"
 
 	"github.com/spf13/cobra"
@@ -36,6 +37,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			internal.CreateConfigDir()
+			initGLC()
 		},
 	}
 )
@@ -47,6 +49,8 @@ func init() {
 
 func initGLC()  {
 	if typeFlag == "" {
+		fmt.Println("No flag provided")
+		prompt.SelectProviderWithPrompt()
 		return
 	}
 
